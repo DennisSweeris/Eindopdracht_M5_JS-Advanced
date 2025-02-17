@@ -26,7 +26,7 @@ Whether you're an aspiring chef, a seasoned home cook, or simply curious about t
 
 # Requirements
 
-- JavaScript Functions (Pure Functions Except the Printing Function)
+- All functions are pure functions except the printing function
 
 ## Function to Get Unique Authors
 

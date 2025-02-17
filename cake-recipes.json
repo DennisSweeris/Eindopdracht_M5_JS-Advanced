@@ -2455,13 +2455,7 @@
     "url": "https://www.bbcgoodfood.com/recipes/72610/ovenbaked-rsti-cake",
     "Description": "Grate potatoes into a hash brown-style patty and cook in the oven for a convenient and tasty side dish",
     "Author": "Emma Lewis",
-    "Ingredients": [
-      "5 rashers streaky bacon",
-      "1½ kg Maris Piper potato, peeled",
-      "5 tbsp olive oil",
-      "1 small onion",
-      "butter, for greasing"
-    ],
+    "Ingredients": ["5 rashers streaky bacon", "1½ kg Maris Piper potato, peeled", "5 tbsp olive oil", "1 small onion", "butter, for greasing"],
     "Method": [
       "Heat oven to 190C/170C fan/gas 5. Dry-fry the bacon in a pan for 5 mins until crisp, then chop into small pieces. Boil the whole potatoes for 5 mins, drain, then place in a bowl of chilled water.",
       "When cool enough to handle, pat the potatoes dry and roughly grate into a large bowl. Toss with the oil as you go, to stop them from sticking. Roughly grate the onion and squeeze out any excess juice, then stir into the potatoes along with the bacon.",
@@ -4392,5 +4386,13 @@
       "Heat a medium non-stick frying pan over a highish heat. Using a piece of kitchen paper wipe the pan with some vegetable oil. Pour a ladleful of the pancake batter into the pan and swirl to cover the base. Cook for about 1 min, then flip, cook for 30 secs more, remove and place on greaseproof paper. Repeat until you’ve made all six pancakes, then set aside.",
       "To serve, arrange handfuls of salad leaves in piles on the side of each of six plates. Fold pancakes into four and sit next to the leaves. Loosely drape two slices of smoked salmon over the leaves and pancakes. Tuck two slices of lemon and a few chives under the salmon, then drizzle the mustard dressing over everything and serve."
     ]
+  },
+  {
+    "Name": "",
+    "url": "",
+    "Description": "A delicious non-existing recipe",
+    "Author": "Me, myself and I",
+    "Ingredients": ["Lots of love", "Blood", "Sweat", "Tears, or water", "Coding pain"],
+    "Method": ["To make this dish..."]
   }
 ]
