@@ -5,7 +5,6 @@ const cakeRecipes = require("./cake-recipes.json");
 // Ensures prompt() works inside the terminal
 const prompt = require("prompt-sync")();
 
-// Your functions here
 const getUniqueAuthors = recipes => {
   const authors = [];
 
@@ -19,17 +18,14 @@ const getUniqueAuthors = recipes => {
   return authors;
 };
 
-// Log naar console
-// console.log(getUniqueAuthors(cakeRecipes));
+const getAllRecipeNames = recipes => {
+  return recipes.map(({ Name }) => Name);
+};
 
 const getRecipesByName = (recipes, name) => {
   const filteredRecipesByName = recipes.filter(({ Name }) => Name && Name.toLowerCase().includes(name.toLowerCase()));
-  console.log(filteredRecipesByName);
-  return filteredRecipesByName.map(({ Name }) => Name);
+  return filteredRecipesByName.length > 0 ? filteredRecipesByName.map(({ Name }) => Name) : "No recipes found";
 };
-
-// Log naar console
-// console.log(getRecipesByName(cakeRecipes, "salmon"));
 
 const getRecipesByAuthor = (recipes, author) => {
   const filteredRecipesByAuthor = recipes.filter(({ Author }) => Author.toLowerCase().includes(author.toLowerCase()));
@@ -40,19 +36,41 @@ const getRecipesByAuthor = (recipes, author) => {
   return filteredRecipesByAuthor.map(({ Name }) => Name);
 };
 
-// Log naar console
-// const author = "Good Food";
-// console.log(getRecipesByAuthor(cakeRecipes, author));
-
 const getRecipeContainingIngredient = (recipes, ingredient) => {
   const filteredRecipes = recipes.filter(({ Ingredients }) => Ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase())));
-
   return filteredRecipes.length > 0 ? filteredRecipes.map(({ Name }) => Name) : "No recipes found with that ingredient.";
 };
 
-// Log naar de console
+// Returns the entire recipe including the instructions etc.
+const getRecipeByExactName = (recipes, name) => {
+  const foundRecipe = recipes.find(({ Name }) => Name && Name.toLowerCase().includes(name.toLowerCase()));
+  return foundRecipe ? foundRecipe : "No recipe found with that name.";
+};
+
+const getAllRecipeIngredients = (recipes, name) => {
+  return recipes
+    .filter(({ Name }) => Name.toLowerCase().includes(name.toLowerCase()))
+    .reduce((allIngredients, { Ingredients }) => {
+      return allIngredients.concat(Ingredients);
+    }, []);
+};
+
+// console log statements:
+// console.log(getUniqueAuthors(cakeRecipes));
+// console.log(getAllRecipeNames(cakeRecipes));
+// console.log(getRecipesByName(cakeRecipes, "salmon"));
+
+// const author = "Good Food";
+// console.log(getRecipesByAuthor(cakeRecipes, author));
+
 // const ingredient = "140g caster sugar";
 // console.log(getRecipeContainingIngredient(cakeRecipes, ingredient));
+
+// const recipeName = "Smoked wild Irish salmon with chive pancakes";
+// console.log(getRecipeByExactName(cakeRecipes, recipeName));
+
+// const recipeName = "Smoked wild Irish salmon with chive pancakes";
+// console.log(getAllRecipeIngredients(cakeRecipes, recipeName));
 
 // Part 2
 
