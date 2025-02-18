@@ -5,16 +5,15 @@ const cakeRecipes = require("./cake-recipes.json");
 // Ensures prompt() works inside the terminal
 const prompt = require("prompt-sync")();
 
-const getUniqueAuthors = recipes => {
-  const authors = [];
+let savedRecipes = [];
 
-  // Als de author niet voorkomt in de lijst, voeg deze dan toe.
+const getUniqueAuthors = recipes => {
+  let authors = [];
   recipes.forEach(recipe => {
     if (!authors.includes(recipe.Author)) {
-      authors.push(recipe.Author);
+      authors = [...authors, recipe.Author];
     }
   });
-
   return authors;
 };
 
@@ -74,38 +73,87 @@ const getAllRecipeIngredients = (recipes, name) => {
 
 // Part 2
 
-// const displayMenu = () => {
-//   console.log("\nRecipe Management System Menu:");
-//   console.log("1. Show All Authors");
-//   console.log("2. Show Recipe names by Author");
-//   console.log("3. Show Recipe names by Ingredient");
-//   console.log("4. Get Recipe by Name");
-//   console.log("5. Get All Ingredients of Saved Recipes");
-//   console.log("0. Exit");
-//   const choice = prompt("Enter a number (1-5) or 0 to exit: ");
-//   return parseInt(choice);
-// };
+const saveRecipe = recipe => {
+  const userChoice = prompt("Do you want to save this recipe? (y/n): ");
+  if (userChoice.toLowerCase() === "y") {
+    savedRecipes.push(recipe);
+    console.log("Recipe saved!");
+  } else {
+    console.log("Recipe not saved.");
+  }
+};
 
-// let choice;
+const displaySavedRecipes = () => {
+  if (savedRecipes.length === 0) {
+    console.log("No saved recipes.");
+  } else {
+    savedRecipes.forEach(recipe => {
+      console.log(`Recipe Name: ${recipe.Name}`);
+      console.log("Ingredients:");
+      recipe.Ingredients.forEach(ingredient => {
+        console.log(`- ${ingredient}`);
+      });
+      console.log(" ");
+    });
+  }
+};
 
-// do {
-//   choice = displayMenu();
+const displayMenu = () => {
+  console.log("\nRecipe Management System Menu:");
+  console.log("1. Show All Authors");
+  console.log("2. Show Recipe names by Author");
+  console.log("3. Show Recipe names by Ingredient");
+  console.log("4. Get Recipe by Name");
+  console.log("5. Get All Ingredients of Saved Recipes");
+  console.log("0. Exit");
+  const choice = prompt("Enter a number (1-5) or 0 to exit: ");
+  return parseInt(choice);
+};
 
-//   switch (choice) {
-//     case 1:
-//       break;
-//     case 2:
-//       break;
-//     case 3:
-//       break;
-//     case 4:
-//       break;
-//     case 5:
-//       break;
-//     case 0:
-//       console.log("Exiting...");
-//       break;
-//     default:
-//       console.log("Invalid input. Please enter a number between 0 and 5.");
-//   }
-// } while (choice !== 0);
+let choice;
+
+do {
+  choice = displayMenu();
+
+  switch (choice) {
+    case 1:
+      const authors = getUniqueAuthors(cakeRecipes);
+      console.log("Authors:");
+      authors.forEach(author => console.log(author));
+      break;
+    case 2:
+      const author = prompt("Enter the author's name:");
+      const recipesByAuthor = getRecipesByAuthor(cakeRecipes, author);
+      console.log(`Recipes from ${author}`);
+      recipesByAuthor.forEach(recipe => console.log(recipe));
+      break;
+    case 3:
+      const ingredient = prompt("Enter the ingredient:");
+      const recipesByIngredient = getRecipeContainingIngredient(cakeRecipes, ingredient);
+      console.log(`Recipes containing ${ingredient}`);
+      recipesByIngredient.forEach(recipe => console.log(recipe));
+      break;
+    case 4:
+      const recipeName = prompt("Enter the recipe name you are looking for: ");
+      const recipe = getRecipeByExactName(cakeRecipes, recipeName);
+      if (recipe !== "No recipe found with that name.") {
+        console.log(`Found recipe: ${recipe.Name}`);
+        console.log("Ingredients:");
+        recipe.Ingredients.forEach(ingredient => {
+          console.log(`- ${ingredient}`);
+        });
+        saveRecipe(recipe);
+      } else {
+        console.log(recipe);
+      }
+      break;
+    case 5:
+      displaySavedRecipes();
+      break;
+    case 0:
+      console.log("Exiting...");
+      break;
+    default:
+      console.log("Invalid input. Please enter a number between 0 and 5.");
+  }
+} while (choice !== 0);

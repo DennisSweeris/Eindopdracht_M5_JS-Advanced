@@ -77,3 +77,14 @@ Whether you're an aspiring chef, a seasoned home cook, or simply curious about t
 - **Input:** `recipes` (an array of recipes with the same format as `cakeRecipes`).
 - **Output:** An array containing all the ingredients from the recipe list.
 - Users can select this option from the menu to view the ingredient list from the recipes that are saved in the previous function.
+
+## Note to self:
+
+- Drawing out and writing down the steps to take really helps!
+- Going step by step makes you feel you are getting something done, so focus on one step at a time.
+
+## Potential project idea's
+
+- Make the Cake Recipe Management System work in the browser
+- Instead of pressing numbers in the console use a GUI.
+- Style it nicely with CSS.
