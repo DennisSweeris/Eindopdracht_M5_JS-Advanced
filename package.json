@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/DennisSweeris/Eindopdracht_M4_CSS-Advanced/issues"
   },
-  "homepage": "https://github.com/DennisSweeris/Eindopdracht_M4_CSS-Advanced#readme"
+  "homepage": "https://github.com/DennisSweeris/Eindopdracht_M4_CSS-Advanced#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
 }

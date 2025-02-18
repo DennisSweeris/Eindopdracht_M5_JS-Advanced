@@ -2,6 +2,9 @@
 
 const cakeRecipes = require("./cake-recipes.json");
 
+// Ensures prompt() works inside the terminal
+const prompt = require("prompt-sync")();
+
 // Your functions here
 const getUniqueAuthors = recipes => {
   const authors = [];
@@ -19,42 +22,36 @@ const getUniqueAuthors = recipes => {
 // Log naar console
 // console.log(getUniqueAuthors(cakeRecipes));
 
-const logRecipeNames = recipes => {
-  recipes.forEach(({ Name }) => {
-    if (!Name) {
-      console.log("A recipe is missing a name.");
-    } else {
-      console.log(Name);
-    }
-  });
+const getRecipesByName = (recipes, name) => {
+  const filteredRecipesByName = recipes.filter(({ Name }) => Name && Name.toLowerCase().includes(name.toLowerCase()));
+  console.log(filteredRecipesByName);
+  return filteredRecipesByName.map(({ Name }) => Name);
 };
 
 // Log naar console
-// logRecipeNames(cakeRecipes);
+// console.log(getRecipesByName(cakeRecipes, "salmon"));
 
 const getRecipesByAuthor = (recipes, author) => {
-  const filteredRecipes = recipes.filter(({ Author }) => Author.toLowerCase() === author.toLowerCase());
+  const filteredRecipesByAuthor = recipes.filter(({ Author }) => Author.toLowerCase().includes(author.toLowerCase()));
 
-  if (filteredRecipes.length === 0) {
+  if (filteredRecipesByAuthor.length === 0) {
     console.log(`No recipes found for author: ${author}`);
   }
-  return filteredRecipes;
+  return filteredRecipesByAuthor.map(({ Name }) => Name);
 };
 
 // Log naar console
-// Test data
-// const author = "good food";
+// const author = "Good Food";
 // console.log(getRecipesByAuthor(cakeRecipes, author));
 
 const getRecipeContainingIngredient = (recipes, ingredient) => {
   const filteredRecipes = recipes.filter(({ Ingredients }) => Ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase())));
 
-  return filteredRecipes.length > 0 ? filteredRecipes : "No recipes found with that ingredient.";
+  return filteredRecipes.length > 0 ? filteredRecipes.map(({ Name }) => Name) : "No recipes found with that ingredient.";
 };
 
 // Log naar de console
-// Test data
-// const ingredient = "Sweat";
+// const ingredient = "140g caster sugar";
 // console.log(getRecipeContainingIngredient(cakeRecipes, ingredient));
 
 // Part 2
